@@ -1,0 +1,25 @@
+{
+    "elasticsearch": [
+        "http://logstash.phl.coredial.com:9200"
+    ],
+    "smtphost": "smtp.coredial.com",
+    "sender": "erizomon@coredial.com",
+    "recipients": [ "cfernandez@coredial.com" ],
+    "msgsubject": "ErizoController code 503 error, no agents available",
+    "msgtext": "ErizoController reported error code 503, no agents available, at {0}. Please do this:\n\nhttps://confluence.coredial.com/display/AT/Recover+from+failed+ErizoController\n\nLast message containing the error:\n\n{1}",
+    "index": "infrapods-*",
+    "query": {
+        "fields": [ "@timestamp", "message" ],
+        "query": {
+            "bool": {
+                "must": [
+                    { "range": { "@timestamp": { "gte": "2018-02-02T08:30:00.000", "lt": "2018-02-02T10:30:00.000" } } },
+                    { "match_phrase": { "message": "EcCloudHandler - message: no agents available, code: 503" } }
+                ]
+            }
+        },
+        "sort": [
+            { "@timestamp": { "order": "asc" } }
+        ]
+    }
+}
