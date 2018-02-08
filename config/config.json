@@ -6,7 +6,7 @@
     "sender": "erizomon@coredial.com",
     "recipients": [ "cfernandez@coredial.com" ],
     "msgsubject": "ErizoController error -- no controller/agents available",
-    "msgtext": "An ErizoController error was detected at {0}. Please do this:\n\nhttps://confluence.coredial.com/display/AT/Recover+from+failed+ErizoController\n\nLasti 10 message containing errors:\n\n{1}",
+    "msgtext": "An ErizoController error was detected at {0}. Please do this:\n\nhttps://confluence.coredial.com/display/AT/Recover+from+failed+ErizoController\n\nLast 10 message containing errors:\n\n{1}",
     "index": "infrapods-*",
     "query": {
         "fields": [ "@timestamp", "message" ],

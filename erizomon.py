@@ -31,7 +31,7 @@ def main( argv ):
     errmsg = list()
     errtime = None
     for hit in get_log_scanner( config ):
-        if "ErizoController" in hit['fields']['message'][0]:
+        if "ERROR" in hit['fields']['message'][0] or "WARN" in hit['fields']['message'][0]:
             alert = True
             errmsg.append( hit['fields']['message'][0] )
             errtime = hit['fields']['@timestamp'][0]
@@ -42,7 +42,7 @@ def main( argv ):
         msg['From'] = config['sender']
         msg['To'] = ", ".join( config['recipients'] )
         mailer.sendmail( config['sender'], config['recipients'], msg.as_string() )
-        #print msgtext
+        #print msg.as_string()
 
 if __name__ == "__main__":
     main(sys.argv[1:])
