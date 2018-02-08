@@ -28,16 +28,16 @@ def get_log_scanner( config ):
 def main( argv ):
     config = get_config( get_config_path( argv ) )
     alert = False
-    errmsg = None
+    errmsg = list()
     errtime = None
     for hit in get_log_scanner( config ):
-        if "code: 503" in hit['fields']['message'][0]:
+        if "ErizoController" in hit['fields']['message'][0]:
             alert = True
-            errmsg = hit['fields']['message'][0]
+            errmsg.append( hit['fields']['message'][0] )
             errtime = hit['fields']['@timestamp'][0]
     if alert:
         mailer = smtplib.SMTP( config['smtphost'] )
-        msg = MIMEText( config['msgtext'].format( errtime, errmsg ) )
+        msg = MIMEText( config['msgtext'].format( errtime, "\n".join( errmsg[-10:] ) ) )
         msg['Subject'] = config['msgsubject']
         msg['From'] = config['sender']
         msg['To'] = ", ".join( config['recipients'] )
