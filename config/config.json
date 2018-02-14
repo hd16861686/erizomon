@@ -17,7 +17,8 @@
                 ],
                 "should": [
                     { "match_phrase": { "message": "EcCloudHandler - message: no agents available, code: 503" } },
-                    { "match_phrase": { "message": "TokensResource - message: createToken error, errorMgs: No Erizo Controller available" } }
+                    { "match_phrase": { "message": "TokensResource - message: createToken error, errorMgs: No Erizo Controller available" } },
+                    { "match_phrase": { "message": "CloudHandler - No erizoController is available" } }
                 ],
                 "minimum_should_match": 1
             }
