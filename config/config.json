@@ -13,7 +13,7 @@
         "query": {
             "bool": {
                 "must": [
-                    { "range": { "@timestamp": { "gte": "now-10m", "lt": "now" } } }
+                    { "range": { "@timestamp": { "gte": "now-30m", "lt": "now" } } }
                 ],
                 "should": [
                     { "match_phrase": { "message": "EcCloudHandler - message: no agents available, code: 503" } },

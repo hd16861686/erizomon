@@ -42,7 +42,8 @@ def main( argv ):
         msg['From'] = config['sender']
         msg['To'] = ", ".join( config['recipients'] )
         mailer.sendmail( config['sender'], config['recipients'], msg.as_string() )
-        #print msg.as_string()
+        return 99
+    return 0
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    sys.exit( main(sys.argv[1:]) )
